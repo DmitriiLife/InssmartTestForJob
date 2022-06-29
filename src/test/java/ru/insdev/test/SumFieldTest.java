@@ -1,8 +1,5 @@
 package ru.insdev.test;
 
-import com.codeborne.selenide.logevents.SelenideLogger;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
@@ -132,7 +129,7 @@ public class SumFieldTest {
     }
 
     @Test
-    void checkFormOfInsuranceBooleanFieldSum() {
+    void checkFormOfInsuranceBooleanTrueFieldSum() {
         formOfInsurance.getBankSber().shouldBe(visible);
         formOfInsurance.getBankSber().click();
         formOfInsurance.getBankRaiffeisen().shouldBe(visible);
@@ -145,6 +142,28 @@ public class SumFieldTest {
         formOfInsurance.getFieldSum().doubleClick().sendKeys(Keys.DELETE);
         formOfInsurance.getFieldSum().doubleClick().sendKeys(Keys.DELETE);
         formOfInsurance.getFieldSum().setValue("TRUE");
+        formOfInsurance.getFieldDate().shouldBe(visible);
+        String date = DataGenerator.getDate(18);
+        formOfInsurance.getFieldDate().setValue(date);
+        formOfInsurance.getButtonSeeOffers().shouldBe(visible);
+        formOfInsurance.getButtonSeeOffers().click();
+        formOfInsurance.getErrorSumZero().shouldBe(visible);
+    }
+
+    @Test
+    void checkFormOfInsuranceBooleanFalseFieldSum() {
+        formOfInsurance.getBankSber().shouldBe(visible);
+        formOfInsurance.getBankSber().click();
+        formOfInsurance.getBankRaiffeisen().shouldBe(visible);
+        formOfInsurance.getBankPrimsoc().click();
+        formOfInsurance.getBankPrimsoc().shouldBe(visible);
+        formOfInsurance.getGenderFemale().shouldBe(visible);
+        formOfInsurance.getFieldSum().shouldBe(visible);
+        formOfInsurance.getCheckFieldSum1().shouldBe(visible);
+        formOfInsurance.getFieldSum().doubleClick().sendKeys(Keys.DELETE);
+        formOfInsurance.getFieldSum().doubleClick().sendKeys(Keys.DELETE);
+        formOfInsurance.getFieldSum().doubleClick().sendKeys(Keys.DELETE);
+        formOfInsurance.getFieldSum().setValue("FALSE");
         formOfInsurance.getFieldDate().shouldBe(visible);
         String date = DataGenerator.getDate(18);
         formOfInsurance.getFieldDate().setValue(date);

@@ -25,7 +25,6 @@ public class DateFieldTest {
         open("https://widgets.insdev.ru/contract/mortgage/?appId=cd458d6b-08ae-5324-a477-a3cdb5023d51&secret=1844a563-9b8f-5346-a61e-89282ba4eb0a");
     }
 
-
     @Test
     void checkFormOfInsuranceFieldDataZeros() {
         formOfInsurance.getBankSber().shouldBe(visible);
@@ -68,5 +67,49 @@ public class DateFieldTest {
         formOfInsurance.getButtonSeeOffers().shouldBe(visible);
         formOfInsurance.getButtonSeeOffers().click();
         formOfInsurance.getErrorDateZero().shouldBe(visible);
+    }
+
+    @Test
+    void checkFormOfInsuranceFieldDataEmpty() {
+        formOfInsurance.getBankSber().shouldBe(visible);
+        formOfInsurance.getBankSber().click();
+        formOfInsurance.getBankRaiffeisen().shouldBe(visible);
+        formOfInsurance.getBankPrimsoc().click();
+        formOfInsurance.getBankPrimsoc().shouldBe(visible);
+        formOfInsurance.getGenderFemale().shouldBe(visible);
+        formOfInsurance.getFieldSum().shouldBe(visible);
+        formOfInsurance.getCheckFieldSum1().shouldBe(visible);
+        formOfInsurance.getFieldSum().doubleClick().sendKeys(Keys.DELETE);
+        formOfInsurance.getFieldSum().doubleClick().sendKeys(Keys.DELETE);
+        formOfInsurance.getFieldSum().doubleClick().sendKeys(Keys.DELETE);
+        formOfInsurance.getFieldSum().setValue("9_000_000");
+        formOfInsurance.getFieldDate().shouldBe(visible);
+        String data = "";
+        formOfInsurance.getFieldDate().setValue(data);
+        formOfInsurance.getButtonSeeOffers().shouldBe(visible);
+        formOfInsurance.getButtonSeeOffers().click();
+        formOfInsurance.getErrorDateEmpty().shouldBe(visible);
+    }
+
+    @Test
+    void checkFormOfInsuranceFieldDataValid() {
+        formOfInsurance.getBankSber().shouldBe(visible);
+        formOfInsurance.getBankSber().click();
+        formOfInsurance.getBankRaiffeisen().shouldBe(visible);
+        formOfInsurance.getBankPrimsoc().click();
+        formOfInsurance.getBankPrimsoc().shouldBe(visible);
+        formOfInsurance.getGenderFemale().shouldBe(visible);
+        formOfInsurance.getFieldSum().shouldBe(visible);
+        formOfInsurance.getCheckFieldSum1().shouldBe(visible);
+        formOfInsurance.getFieldSum().doubleClick().sendKeys(Keys.DELETE);
+        formOfInsurance.getFieldSum().doubleClick().sendKeys(Keys.DELETE);
+        formOfInsurance.getFieldSum().doubleClick().sendKeys(Keys.DELETE);
+        formOfInsurance.getFieldSum().setValue("1111111");
+        formOfInsurance.getFieldDate().shouldBe(visible);
+        String date = DataGenerator.getDate(37);
+        formOfInsurance.getFieldDate().setValue(date);
+        formOfInsurance.getButtonSeeOffers().shouldBe(visible);
+        formOfInsurance.getButtonSeeOffers().click();
+        formOfInsurance.getInsuranceOffers().shouldBe(visible);
     }
 }

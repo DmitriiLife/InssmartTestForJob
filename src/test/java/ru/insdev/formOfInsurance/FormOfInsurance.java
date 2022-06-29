@@ -24,14 +24,20 @@ public class FormOfInsurance {
             .find(exactText("Посмотреть предложения"));
     private SelenideElement errorSumMax = $$("[class$='MuiTypography-root jss27 MuiTypography-body1']")
             .find(exactText("Значение поля \"Остаток долга по ипотеке\" не должно превышать 30000000"));
-    private SelenideElement insuranceOffers = $$("[class$='MuiTypography-root jss73 MuiTypography-h3']")
-            .find(exactText("Предложения страховых"));
+    private SelenideElement insuranceOffers = $$("[class$='MuiTypography-root MuiTypography-h3 MuiTypography-colorPrimary']")
+            .find(exactText("Страхование ИПОТЕКИ"));
     private SelenideElement errorSumMin = $$("[class$='MuiTypography-root jss27 MuiTypography-body1']")
             .find(exactText("Значение поля \"Остаток долга по ипотеке\" не должно быть меньше 100000"));
     private SelenideElement errorSumZero = $$("[class$='MuiTypography-root jss27 MuiTypography-body1']")
             .find(exactText("Поле \"Остаток долга по ипотеке\" обязательно для заполнения"));
     private SelenideElement errorDateZero = $$("[class$='MuiFormHelperText-root MuiFormHelperText-contained Mui-error MuiFormHelperText-filled']")
             .find(exactText("Поле \"Дата рождения страхователя\" обязательно для заполнения"));
+    private SelenideElement errorDateEmpty = $$("[class$='MuiTypography-root jss27 MuiTypography-body1']")
+            .find(exactText("Поле \"Дата рождения страхователя\" обязательно для заполнения"));
+
+    public SelenideElement getErrorDateEmpty() {
+        return errorDateEmpty;
+    }
 
     public SelenideElement getErrorDateZero() {
         return errorDateZero;
